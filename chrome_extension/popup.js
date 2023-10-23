@@ -1,12 +1,14 @@
-// popup.js
-
 const captureBtn = document.getElementById("capture");
 const resultDiv = document.getElementById("result");
 const saveBtn = document.getElementById("save");
 const fileNameDiv = document.getElementById("fileName");
+const loader = document.getElementById("loader");
 let filename = null;
 
 captureBtn.addEventListener("click", function () {
+  loader.classList.remove("hidden");  // show loader
+  captureBtn.textContent = "Capturing..."; // feedback
+  
   chrome.tabs.captureVisibleTab(
     null,
     { format: "png" },
@@ -25,16 +27,20 @@ captureBtn.addEventListener("click", function () {
         day: "2-digit",
       });
       timestamp = timestamp.toUpperCase().replace(",", " at");
-      filename = "Screenshot " + timestamp + ".png";
-      fileNameDiv.innerHTML = filename;
+      filename = `Screenshot ${timestamp}.png`;
+      fileNameDiv.textContent = filename;
+      captureBtn.textContent = "Capture";
+      loader.classList.add("hidden"); // hide loader
     }
   );
 });
 
 saveBtn.addEventListener("click", function () {
+  const screenshotImg = resultDiv.childNodes[0].src;
+
   chrome.runtime.sendMessage({
     action: "saveScreenshot",
-    imageUrl: resultDiv.childNodes[0].src,
+    imageUrl: screenshotImg,
     filename: filename,
   });
 });

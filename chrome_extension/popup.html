@@ -3,13 +3,23 @@
 
 <head>
     <title>SnapMaster</title>
+    <link rel="stylesheet" href="popup.css">
 </head>
 
 <body>
-    <button id="capture">Capture Screenshot</button>
-    <button id="save" disabled>Save</button>
-    <div id="fileName"></div>
-    <div id="result"></div>
+    <div id="controls">
+        <div id="logo">
+            <img src="icons/icon_48.png" alt="Logo">
+            <span>SnapMaster</span>
+        </div>
+        <button id="capture">Capture</button>
+        <button id="save" disabled>Save</button>
+    </div>
+    <div id="loader" class="hidden"></div>
+    <div id="output">
+        <div id="fileName"></div>
+        <div id="result"></div>
+    </div>
     <script src="popup.js"></script>
 </body>
 

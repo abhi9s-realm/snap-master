@@ -4,6 +4,7 @@ const saveBtn = document.getElementById("save");
 const fileNameDiv = document.getElementById("fileName");
 const loader = document.getElementById("loader");
 const outputDiv = document.getElementById("output");
+const image = document.getElementById("screenshotImage");
 let filename = null;
 
 captureBtn.addEventListener("click", function () {
@@ -14,11 +15,9 @@ captureBtn.addEventListener("click", function () {
       null,
       { format: "png" },
       function (screenshotUrl) {
-        let img = document.createElement("img");
-        img.src = screenshotUrl;
-        img.style.maxWidth = "100%";
-        img.style.maxHeight = "100%";
-        resultDiv.appendChild(img);
+        image.src = screenshotUrl;
+        image.style.maxWidth = "100%";
+        image.style.maxHeight = "100%";
         saveBtn.disabled = false;
         let timestamp = new Date().toLocaleString("en-UK", {
           hour: "numeric",

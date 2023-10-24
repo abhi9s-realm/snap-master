@@ -40,7 +40,7 @@ captureBtn.addEventListener("click", function () {
 });
 
 saveBtn.addEventListener("click", function () {
-  const screenshotImg = resultDiv.childNodes[0].src;
+  const screenshotImg = image.src;
 
   chrome.runtime.sendMessage({
     action: "saveScreenshot",

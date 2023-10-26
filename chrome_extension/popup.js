@@ -1,6 +1,7 @@
 const captureBtn = document.getElementById("capture");
-const resultDiv = document.getElementById("result");
 const saveBtn = document.getElementById("save");
+const clipboardBtn = document.getElementById("clipboard");
+const resultDiv = document.getElementById("result");
 const fileNameDiv = document.getElementById("fileName");
 const loader = document.getElementById("loader");
 let filename = null;
@@ -8,7 +9,7 @@ let filename = null;
 captureBtn.addEventListener("click", function () {
   loader.classList.remove("hidden");  // show loader
   captureBtn.textContent = "Capturing..."; // feedback
-  
+
   chrome.tabs.captureVisibleTab(
     null,
     { format: "png" },
@@ -17,6 +18,7 @@ captureBtn.addEventListener("click", function () {
       img.src = screenshotUrl;
       resultDiv.appendChild(img);
       saveBtn.disabled = false;
+      clipboardBtn.disabled = false;
       let timestamp = new Date().toLocaleString("en-UK", {
         hour: "numeric",
         minute: "numeric",
@@ -44,3 +46,20 @@ saveBtn.addEventListener("click", function () {
     filename: filename,
   });
 });
+
+clipboardBtn.addEventListener("click", async function () {
+  try {
+    const screenshotImg = resultDiv.childNodes[0].src;
+    const blob = await (await fetch(screenshotImg)).blob()
+
+    navigator.clipboard.write([
+      new ClipboardItem({
+        [blob.type]: blob
+      })
+    ])
+
+    clipboardBtn.textContent = "Copied to Clipboard"; // Feedback
+  } catch (error) {
+    console.error(error);
+  }
+})

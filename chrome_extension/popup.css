@@ -1,86 +1,98 @@
 /* Common CSS Properties */
 :root {
-    --bg-color: #454954;  /* Background color */
-    --text-color: #e3e4e8;  /* Text color */
-    --control-bg: #454954;  /* Slightly Lighter background color */
-    --button-bg-color: #255ff4;  /* Primary button color */
-    --button-color: #e3e4e8;  /* Button text color */
-    --button-hover: #5583f6;  /* Hover effect */
-    --button-disabled-bg-color: #454954;  /* Disabled button background color */
-    --button-disabled-color: #e3e4e8;  /* Disabled button text color with some transparency */
-    --border-color: 2px solid #666666; 
-    --loader-color: #255ff4;  /* Loader color */
-    --drop-shadow-color: #255ff4;  /* Drop shadow color */
+	--bg-color: #454954; /* Background color */
+	--text-color: #e3e4e8; /* Text color */
+	--control-bg: #454954; /* Slightly Lighter background color */
+	--button-bg-color: #255ff4; /* Primary button color */
+	--button-color: #e3e4e8; /* Button text color */
+	--button-hover: #5583f6; /* Hover effect */
+	--button-disabled-bg-color: #454954; /* Disabled button background color */
+	--button-disabled-color: #e3e4e8; /* Disabled button text color with some transparency */
+	--border-color: 2px solid #666666;
+	--loader-color: #255ff4; /* Loader color */
+	--drop-shadow-color: #255ff4; /* Drop shadow color */
 }
 
-
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: Arial, sans-serif;
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	font-family: Arial, sans-serif;
 }
 
 #controls {
-    background-color: var(--control-bg);
-    padding: 15px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    border: var(--border-color);
-    border-radius: 5px;
+	background-color: var(--control-bg);
+	padding: 15px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+	border: var(--border-color);
+	border-radius: 5px;
 }
 
 #logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 10px;
 }
 
 #logo img {
-    width: 50px;
-    height: 50px;
-    filter: drop-shadow(0 0 5px var(--drop-shadow-color));
+	width: 50px;
+	height: 50px;
+	filter: drop-shadow(0 0 5px var(--drop-shadow-color));
 }
 
 #logo span {
-    font-size: 24px;
-    font-weight: bold;
+	font-size: 24px;
+	font-weight: bold;
 }
 
 #output {
-    padding: 15px;
-    border: var(--border-color);
-    border-radius: 5px;
+	padding: 15px;
+	border: var(--border-color);
+	border-radius: 5px;
+}
+
+#result > img {
+	width: 100%;
+	object-fit: contain;
+}
+
+#clipboard {
+	text-wrap: nowrap;
 }
 
 button {
-    background-color: var(--button-bg-color);
-    color: var(--button-color);
-    border: none;
-    padding: 10px 20px;
-    margin-right: 10px;
-    cursor: pointer;
-    border-radius: 5px;
+	background-color: var(--button-bg-color);
+	color: var(--button-color);
+	border: none;
+	padding: 10px 20px;
+	margin-right: 10px;
+	cursor: pointer;
+	border-radius: 5px;
 }
 
 button:hover {
-    background-color: var(--button-hover);
+	background-color: var(--button-hover);
 }
 
 button:disabled {
-    background-color: var(--button-disabled-bg-color);
-    color: var(--button-disabled-color);
-    cursor: not-allowed;
+	background-color: var(--button-disabled-bg-color);
+	color: var(--button-disabled-color);
+	cursor: not-allowed;
 }
 
 .hidden {
-    display: none;
+	display: none;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }

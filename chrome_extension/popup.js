@@ -1,6 +1,7 @@
 const captureBtn = document.getElementById("capture");
-const resultDiv = document.getElementById("result");
 const saveBtn = document.getElementById("save");
+const clipboardBtn = document.getElementById("clipboard");
+const resultDiv = document.getElementById("result");
 const fileNameDiv = document.getElementById("fileName");
 const loader = document.getElementById("loader");
 const outputDiv = document.getElementById("output");
@@ -16,9 +17,9 @@ captureBtn.addEventListener("click", function () {
       { format: "png" },
       function (screenshotUrl) {
         image.src = screenshotUrl;
-        image.style.maxWidth = "100%";
-        image.style.maxHeight = "100%";
         saveBtn.disabled = false;
+        clipboardBtn.disabled = false;
+
         let timestamp = new Date().toLocaleString("en-UK", {
           hour: "numeric",
           minute: "numeric",
@@ -48,3 +49,20 @@ saveBtn.addEventListener("click", function () {
     filename: filename,
   });
 });
+
+clipboardBtn.addEventListener("click", async function () {
+  try {
+    const screenshotImg = image.src;
+    const blob = await (await fetch(screenshotImg)).blob()
+
+    navigator.clipboard.write([
+      new ClipboardItem({
+        [blob.type]: blob
+      })
+    ])
+
+    clipboardBtn.textContent = "Copied to Clipboard"; // Feedback
+  } catch (error) {
+    console.error(error);
+  }
+})

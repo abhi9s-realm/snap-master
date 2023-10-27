@@ -3,7 +3,7 @@
     "name": "SnapMaster",
     "version": "1.0",
     "description": "Effortlessly capture and save screenshots",
-    "permissions": ["storage", "activeTab", "downloads"],
+    "permissions": ["activeTab", "downloads"],
     "background": {
       "service_worker": "background.js"
     },
